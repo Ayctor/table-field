@@ -1,0 +1,67 @@
+// Nova Tool CSS
+.table_field {
+    width: 100%;
+    border: 1px solid #eef1f4;
+    border-collapse: collapse;
+
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__column {
+        text-align: left;
+        color: #3c4b5f;
+        border: 1px solid #eef1f4;
+    }
+
+    &__row:first-child {
+
+        .table_field__input {
+            font-weight: 700;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 8px;
+        color: #3c4b5f;
+
+        &:focus {
+            border: none;
+            outline: none;
+            shadow: none;
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &--add {
+            color: #4099de;
+        }
+
+        &--remove {
+            color: #e74444;
+        }
+
+        svg {
+            fill: currentColor;
+        }
+
+        &:focus {
+            border: none;
+            outline: none;
+            shadow: none;
+        }
+    }
+}
