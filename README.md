@@ -34,4 +34,4 @@ return [
 
 ## License
 
-[MIT](https://github.com/Ayctor/SireneApi/blob/master/LICENSE)
+[MIT](https://github.com/Ayctor/table-field/blob/master/LICENSE)
