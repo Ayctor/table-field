@@ -160,11 +160,6 @@
                 this.data.push(columns);
                 this.value = JSON.stringify(this.data);
                 this.rows += 1;
-                console.log('headers', this.headers);
-                console.log('data', this.data);
-                console.log('value', this.value);
-                console.log('rows', this.rows);
-                console.log('columns', this.columns);
             },
 
             /**
@@ -177,11 +172,6 @@
                 this.value = JSON.stringify(this.data);
                 this.headers.push('');
                 this.columns += 1;
-                console.log('headers', this.headers);
-                console.log('data', this.data);
-                console.log('value', this.value);
-                console.log('rows', this.rows);
-                console.log('columns', this.columns);
             },
 
             /**
@@ -191,11 +181,6 @@
                 this.data.splice(index, 1);
                 this.value = JSON.stringify(this.data);
                 this.rows -= 1;
-                console.log('headers', this.headers);
-                console.log('data', this.data);
-                console.log('value', this.value);
-                console.log('rows', this.rows);
-                console.log('columns', this.columns);
             },
 
             /**
@@ -208,11 +193,6 @@
                 this.value = JSON.stringify(this.data);
                 this.headers.splice(index, 1);
                 this.columns -= 1;
-                console.log('headers', this.headers);
-                console.log('data', this.data);
-                console.log('value', this.value);
-                console.log('rows', this.rows);
-                console.log('columns', this.columns);
             },
         },
     };
