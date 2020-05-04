@@ -1,9 +1,14 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "ayctor/table-field",
     "description": "A Laravel Nova field.",
     "license": "MIT",
-    "keywords": ["laravel", "nova", "field", "table"],
+    "keywords": [
+        "laravel",
+        "nova",
+        "field",
+        "table"
+    ],
     "homepage": "https://github.com/Ayctor/table-field",
     "authors": [
         {
