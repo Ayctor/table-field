@@ -6,153 +6,159 @@
                 <div class="overflow-x-auto">
                     <table class="table_field">
                         <tbody class="table_field__body">
-                            <tr class="table_field__row" v-for="(row, index) in data" :key="index">
-                                <td class="table_field__column">
-                                    <div class="table_field__buttons">{{ index + 1 }}</div>
-                                </td>
-                                <td class="table_field__column" v-for="(column, subindex) in row" :key="subindex">
-                                    <div class="table_field__heading" v-if="index === 0">
-                                        <button
-                                            class="table_field__button table_field__button--add"
-                                            type="button"
-                                            :title="addColumnButtonLabel"
-                                            @click.prevent="addColumn(subindex)"
+                        <tr class="table_field__row" v-for="(row, index) in data" :key="index">
+                            <td class="table_field__column">
+                                <div class="table_field__buttons">{{ index + 1 }}</div>
+                            </td>
+                            <td class="table_field__column" v-for="(column, subindex) in row" :key="subindex">
+                                <div class="table_field__heading" v-if="index === 0">
+                                    <button
+                                        class="table_field__button table_field__button--add"
+                                        type="button"
+                                        :title="addColumnButtonLabel"
+                                        @click.prevent="addColumn(subindex)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                        <input
-                                            class="table_field__input"
-                                            type="text"
-                                            :value="column"
-                                            size="7"
-                                            @keyup="changeValue($event, index, subindex)"
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <input
+                                        class="table_field__input"
+                                        type="text"
+                                        :value="column"
+                                        size="7"
+                                        @keyup="changeValue($event, index, subindex)"
+                                        v-if="headersDropdowns.length < 1"
+                                    >
+                                    <select @change="changeValue($event, index, subindex)" v-else>
+                                        <option :value="header" v-for="(header, key) in headersDropdowns" :key="key" :selected="column === header">
+                                            {{ header }}
+                                        </option>
+                                    </select>
+                                    <button
+                                        class="table_field__button table_field__button--remove"
+                                        type="button"
+                                        :title="removeColumnButtonLabel"
+                                        @click.prevent="removeColumn(subindex)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                        <button
-                                            class="table_field__button table_field__button--remove"
-                                            type="button"
-                                            :title="removeColumnButtonLabel"
-                                            @click.prevent="removeColumn(subindex)"
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11H8c-.55 0-1-.45-1-1s.45-1 1-1h8c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div v-else>
+                                    <input
+                                        class="table_field__input"
+                                        type="text"
+                                        :value="column"
+                                        size="7"
+                                        @keyup="changeValue($event, index, subindex)"
+                                    >
+                                </div>
+                            </td>
+                            <td class="table_field__column">
+                                <div class="table_field__buttons table_field__buttons--start" v-if="index === 0">
+                                    <button
+                                        class="table_field__button table_field__button--add"
+                                        type="button"
+                                        :title="addColumnButtonLabel"
+                                        @click.prevent="addColumn(columns)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11H8c-.55 0-1-.45-1-1s.45-1 1-1h8c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div v-else>
-                                        <input
-                                            class="table_field__input"
-                                            type="text"
-                                            :value="column"
-                                            size="7"
-                                            @keyup="changeValue($event, index, subindex)"
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="table_field__buttons table_field__buttons--col" v-else>
+                                    <button
+                                        class="table_field__button table_field__button--add"
+                                        type="button"
+                                        :title="addRowButtonLabel"
+                                        @click.prevent="addRow(index)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                    </div>
-                                </td>
-                                <td class="table_field__column">
-                                    <div class="table_field__buttons table_field__buttons--start" v-if="index === 0">
-                                        <button
-                                            class="table_field__button table_field__button--add"
-                                            type="button"
-                                            :title="addColumnButtonLabel"
-                                            @click.prevent="addColumn(columns)"
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        class="table_field__button table_field__button--remove"
+                                        type="button"
+                                        :title="removeRowButtonLabel"
+                                        @click.prevent="removeRow(index)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="table_field__buttons table_field__buttons--col" v-else>
-                                        <button
-                                            class="table_field__button table_field__button--add"
-                                            type="button"
-                                            :title="addRowButtonLabel"
-                                            @click.prevent="addRow(index)"
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11H8c-.55 0-1-.45-1-1s.45-1 1-1h8c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table_field__row">
+                            <td class="table_field__column"></td>
+                            <td class="table_field__column" :colspan="columns"></td>
+                            <td class="table_field__column">
+                                <div class="table_field__buttons table_field__buttons--col table_field__buttons--start">
+                                    <button
+                                        class="table_field__button table_field__button--add"
+                                        type="button"
+                                        :title="addRowButtonLabel"
+                                        @click.prevent="addRow(rows)"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                        <button
-                                            class="table_field__button table_field__button--remove"
-                                            type="button"
-                                            :title="removeRowButtonLabel"
-                                            @click.prevent="removeRow(index)"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11H8c-.55 0-1-.45-1-1s.45-1 1-1h8c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="table_field__row">
-                                <td class="table_field__column"></td>
-                                <td class="table_field__column" :colspan="columns"></td>
-                                <td class="table_field__column">
-                                    <div class="table_field__buttons table_field__buttons--col table_field__buttons--start">
-                                        <button
-                                            class="table_field__button table_field__button--add"
-                                            type="button"
-                                            :title="addRowButtonLabel"
-                                            @click.prevent="addRow(rows)"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="18"
-                                                height="18"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                            <path d="M0 0h24v24H0V0z" fill="none" />
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11h-3v3c0 .55-.45 1-1 1s-1-.45-1-1v-3H8c-.55 0-1-.45-1-1s.45-1 1-1h3V8c0-.55.45-1 1-1s1 .45 1 1v3h3c.55 0 1 .45 1 1s-.45 1-1 1z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -176,6 +182,7 @@
                 rows: 4,
                 columns: 4,
                 headers: [],
+                headersDropdowns: [],
                 addRowButtonLabel: "Add row",
                 addColumnButtonLabel: "Add column",
                 removeRowButtonLabel: "Remove row",
@@ -192,6 +199,7 @@
                 this.rows = this.field.rows || 4;
                 this.columns = this.field.columns || 4;
                 this.headers = this.field.headers || [];
+                this.headersDropdowns = this.field.headersDropdowns || [];
                 this.addRowButtonLabel = this.field.addRowButtonLabel || "Add row";
                 this.addColumnButtonLabel =
                     this.field.addColumnButtonLabel || "Add column";

@@ -50,6 +50,18 @@ class Table extends Field
     }
 
     /**
+     * Set the headers dropdowns
+     *
+     * @param  array  $headersDropdowns
+     *
+     * @return $this
+     */
+    public function headersDropdowns(array $headersDropdowns = []): self
+    {
+        return $this->withMeta(['headersDropdowns' => $headersDropdowns]);
+    }
+
+    /**
      * Set the label for the add row button
      *
      * @param  string  $label

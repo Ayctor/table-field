@@ -1,5 +1,5 @@
 {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "name": "ayctor/table-field",
     "description": "A Laravel Nova field.",
     "license": "MIT",
