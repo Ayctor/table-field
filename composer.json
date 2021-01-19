@@ -1,5 +1,5 @@
 {
-    "version": "1.0.7",
+    "version": "1.0.8",
     "name": "ayctor/table-field",
     "description": "A Laravel Nova field.",
     "license": "MIT",
@@ -12,8 +12,8 @@
     "homepage": "https://github.com/Ayctor/table-field",
     "authors": [
         {
-            "name": "Axel Charpentier",
-            "email": "axelc@ayctor.com"
+            "name": "Ayctor",
+            "email": "devs@ayctor.com"
         }
     ],
     "support": {
@@ -21,7 +21,7 @@
         "source": "https://github.com/Ayctor/table-field/tree/master"
     },
     "require": {
-        "php": ">=7.4.0"
+        "php": "^7.4|^8.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ayctor\\TableField\\FieldServiceProvider"
+                "Ayctor\\TableField\\TableFieldServiceProvider"
             ]
         }
     },
