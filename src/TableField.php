@@ -4,7 +4,7 @@ namespace Ayctor\TableField;
 
 use Laravel\Nova\Fields\Field;
 
-class Table extends Field
+class TableField extends Field
 {
     /**
      * The field's component.
