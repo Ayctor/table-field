@@ -1,9 +1,9 @@
 <template>
     <panel-item :field="field">
-        <template slot="value">
+        <template #value>
             <div class="w-full overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full border border-collapse">
+                    <table v-if="data" class="w-full border border-collapse">
                         <thead>
                             <tr>
                                 <th class="p-2 border text-left" v-for="(column, index) in data[0]" :key="index">
@@ -19,6 +19,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div v-else>—</div>
                 </div>
             </div>
         </template>
